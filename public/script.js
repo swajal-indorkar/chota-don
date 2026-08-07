@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function checkPin() {
-        if (pinInput.value === '1511') {
+        if (pinInput.value === '1010') {
             lockScreen.style.opacity = '0';
             setTimeout(() => {
                 lockScreen.classList.add('hidden');

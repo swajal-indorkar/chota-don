@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Vedangi — From Swarnim</title>
+    <meta name="description" content="A love letter, a journey, and 20 reasons — all for you.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Inter:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="sparkle-container" class="sparkle-container"></div>
+
+    <!-- Lock Screen -->
+    <div id="lock-screen" class="lock-screen">
+        <div class="lock-hearts" id="lock-hearts"></div>
+        <div class="lock-box">
+            <div class="lock-icon">💌</div>
+            <h2>This is private...</h2>
+            <p class="lock-sub">Enter our special date to continue</p>
+            <input type="password" id="pin-input" maxlength="4" placeholder="••••" autofocus>
+            <button id="unlock-btn" class="btn-primary">Unlock</button>
+            <p id="error-msg" class="error-msg"></p>
+        </div>
+    </div>
+
+    <!-- Main Content (hidden until unlocked) -->
+    <div id="main-content" class="hidden">
+
+        <!-- Floating background blobs -->
+        <div class="bg-blob blob-1"></div>
+        <div class="bg-blob blob-2"></div>
+        <div class="bg-blob blob-3"></div>
+
+        <!-- Hero Section -->
+        <section class="hero" id="hero">
+            <div class="hero-particles" id="hero-particles"></div>
+            <div class="hero-content">
+                <p class="hero-eyebrow">a website made with love</p>
+                <h1 class="hero-title">
+                    <span class="title-line">For</span>
+                    <span class="title-line title-name">Vedangi</span>
+                </h1>
+                <p class="hero-subtitle">A celebration of our beautiful journey, a letter of love, and all the reasons why you mean the world to me.</p>
+                <div class="hero-actions">
+                    <button id="playMusicBtn" class="btn-primary music-btn">
+                        <span class="btn-icon music-icon">♪</span>
+                        <span class="music-label">Play Our Song</span>
+                        <div class="music-bars">
+                            <span></span><span></span><span></span><span></span>
+                        </div>
+                    </button>
+                </div>
+                <div id="youtube-player" style="position:absolute;opacity:0;pointer-events:none;"></div>
+            </div>
+            <a href="#letter" class="scroll-cta">
+                <span>Begin</span>
+                <div class="scroll-arrow"></div>
+            </a>
+        </section>
+
+        <!-- Letter Section -->
+        <section class="letter-section" id="letter">
+            <h2 class="section-heading fade-in">A Letter For You</h2>
+            <div class="envelope-wrapper" id="envelope-wrapper">
+                <div class="envelope" id="envelope">
+                    <div class="envelope-flap"></div>
+                    <div class="envelope-body">
+                        <div class="envelope-heart">❤️</div>
+                    </div>
+                    <div class="letter-paper" id="letter-paper">
+                        <div class="letter-header">
+                            <span class="letter-date">A year of us 💕</span>
+                        </div>
+                        <p class="typewriter-line">My dear vedu,</p>
+                        <p class="typewriter-line">It's been a whole year of love, laughter, growth, and countless memories that I will always cherish.</p>
+                        <p class="typewriter-line">You are the most incredible person I've ever met.</p>
+                        <p class="typewriter-line">I saw something in you that I haven't seen in any other girl — the way you truly understand me.</p>
+                        <p class="typewriter-line">Of course, it's a different story when you get angry with me; I don't like that, but you look even more adorable when you're angry.</p>
+                        <p class="typewriter-line">This year wasn't just about the happy days, but also about how we stood by each other during tough times, learned more about one another, and grew stronger together.</p>
+                        <p class="typewriter-line">You bring so much light into my life.</p>
+                        <p class="typewriter-line">Thank you so much for being with me, for your patience, your laugh &amp; your endless love.</p>
+                        <p class="letter-sign typewriter-line">
+                            Forever yours,<br>
+                            <em>Swarnim</em><br>
+                            <span class="letter-kiss">💋</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <p class="tap-hint fade-in" id="tap-hint">tap the envelope to open 💌</p>
+        </section>
+
+        <!-- Journey Section -->
+        <section class="journey-section" id="journey">
+            <h2 class="section-heading fade-in">Our Journey</h2>
+            <div class="timeline">
+                <div class="timeline-line"></div>
+
+                <div class="timeline-card fade-in">
+                    <div class="timeline-dot"><span>1</span></div>
+                    <div class="timeline-body">
+                        <h3>✨ The beginning</h3>
+                        <p class="timeline-label">When we met</p>
+                        <p>That special day when everything changed. The day I saw you on traditional day in that beautiful traditional outfit — you looked so beautiful. I had an injury, and you took care of me; that's when I saw how caring you are.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-card fade-in">
+                    <div class="timeline-dot"><span>2</span></div>
+                    <div class="timeline-body">
+                        <h3>🌱 The journey</h3>
+                        <p class="timeline-label">Growing together</p>
+                        <p>Every smile, every struggle, and every unforgettable moment we've shared has become a part of our story.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-card fade-in">
+                    <div class="timeline-dot"><span>3</span></div>
+                    <div class="timeline-body">
+                        <h3>💪 The hard times</h3>
+                        <p class="timeline-label">Becoming stronger</p>
+                        <p>Even in the hardest times, your presence gave me the strength to keep going. The tough moments didn't break us; they showed us how strong we could be together.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-card fade-in">
+                    <div class="timeline-dot"><span>4</span></div>
+                    <div class="timeline-body">
+                        <h3>💖 Today</h3>
+                        <p class="timeline-label">Still falling</p>
+                        <p>Looking at you today, I still find new reasons to fall in love with you. Still falling, still smiling, still choosing you.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reasons Section -->
+        <section class="reasons-section" id="reasons">
+            <h2 class="section-heading fade-in">20 Reasons I Love You</h2>
+            <p class="swipe-hint fade-in">swipe →</p>
+            <div class="reasons-track" id="reasons-track">
+                <!-- populated by JS -->
+            </div>
+            <div class="reasons-dots" id="reasons-dots"></div>
+        </section>
+
+        <!-- Forever Section -->
+        <section class="forever-section" id="forever">
+            <div class="forever-content fade-in">
+                <div class="forever-heart">💕</div>
+                <h2 class="forever-title">Forever & Always</h2>
+                <p class="forever-text">Every love story is beautiful, but ours is my favorite.<br>Here's to many more years of love, laughter, and growing together.</p>
+                <div class="forever-date">Since 15.11 ❤️</div>
+            </div>
+            <div class="confetti-container" id="confetti-container"></div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="site-footer fade-in">
+            <div class="footer-heart">❤️</div>
+            <p>Made with all my love by <strong>Swarnim</strong></p>
+            <p class="footer-sub">for the most beautiful girl in the world</p>
+        </footer>
+
+    </div>
+
+    <!-- Floating Navigation -->
+    <nav id="floating-nav" class="floating-nav hidden">
+        <a href="#hero" class="nav-dot active" data-section="hero" title="Home"></a>
+        <a href="#letter" class="nav-dot" data-section="letter" title="Letter"></a>
+        <a href="#journey" class="nav-dot" data-section="journey" title="Journey"></a>
+        <a href="#reasons" class="nav-dot" data-section="reasons" title="Reasons"></a>
+        <a href="#forever" class="nav-dot" data-section="forever" title="Forever"></a>
+    </nav>
+
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{
+  "name": "chota-don",
+  "version": "1.0.0",
+  "description": "A romantic website for Vedangi — a love letter, journey, and 20 reasons, all from Swarnim.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test"
+  },
+  "keywords": [],
+  "author": "Swarnim",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}

@@ -904,10 +904,12 @@ section {
     max-width: 440px;
     margin: 0 auto;
     padding: 3.5rem 2rem 3rem;
-    background: radial-gradient(circle at 50% 20%, #460938 0%, #240428 55%, #120115 100%);
-    border: 1px solid rgba(255, 77, 109, 0.35);
+    background: var(--glass);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1.5px solid var(--glass-border);
     border-radius: 36px;
-    box-shadow: 0 25px 70px rgba(18, 1, 22, 0.75), 0 0 60px rgba(255, 42, 133, 0.25);
+    box-shadow: var(--glass-shadow);
     text-align: center;
     overflow: hidden;
     display: flex;
@@ -921,24 +923,26 @@ section {
     right: 1.5rem;
     font-size: 1.4rem;
     line-height: 1;
-    color: rgba(255, 255, 255, 0.65);
+    color: var(--pink-400);
     cursor: default;
     user-select: none;
 }
 .proposal-title {
     font-family: var(--font-display);
-    font-size: clamp(2rem, 5.5vw, 2.75rem);
+    font-size: clamp(1.8rem, 5vw, 2.6rem);
     font-weight: 700;
-    color: #ffffff;
+    background: linear-gradient(135deg, var(--pink-500), var(--pink-400));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     line-height: 1.25;
     letter-spacing: -0.5px;
-    text-shadow: 0 2px 20px rgba(255, 77, 109, 0.45);
     margin: 0;
 }
 .proposal-subtitle {
     font-family: var(--font-body);
-    font-size: clamp(1rem, 2.8vw, 1.15rem);
-    color: rgba(255, 255, 255, 0.75);
+    font-size: clamp(1rem, 2.6vw, 1.15rem);
+    color: var(--text-soft);
     line-height: 1.6;
     max-width: 340px;
     margin: 0;
@@ -958,7 +962,7 @@ section {
     width: 100%;
     max-width: 320px;
     padding: 1.1rem 2rem;
-    background: linear-gradient(135deg, #ff177d 0%, #ff0066 50%, #e6005c 100%);
+    background: linear-gradient(135deg, var(--pink-500), var(--pink-400));
     color: #ffffff;
     font-family: var(--font-body);
     font-size: 1.1rem;
@@ -966,25 +970,25 @@ section {
     border: none;
     border-radius: 9999px;
     cursor: pointer;
-    box-shadow: 0 10px 30px rgba(255, 0, 102, 0.5), 0 0 25px rgba(255, 0, 102, 0.3);
+    box-shadow: 0 8px 25px rgba(201, 24, 74, 0.35);
     transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
     position: relative;
     z-index: 2;
 }
 .btn-yes:hover {
     transform: scale(1.05);
-    box-shadow: 0 14px 40px rgba(255, 0, 102, 0.7), 0 0 35px rgba(255, 0, 102, 0.45);
+    box-shadow: 0 12px 35px rgba(201, 24, 74, 0.5);
 }
 .btn-no {
     width: 100%;
     max-width: 240px;
     padding: 0.9rem 1.8rem;
-    background: rgba(255, 255, 255, 0.08);
-    color: rgba(255, 255, 255, 0.55);
+    background: rgba(255, 255, 255, 0.7);
+    color: var(--text-soft);
     font-family: var(--font-body);
     font-size: 1rem;
     font-weight: 600;
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    border: 1px solid var(--pink-200);
     border-radius: 9999px;
     cursor: pointer;
     transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s ease;
@@ -1007,11 +1011,13 @@ section {
 .proposal-success .success-title {
     font-family: var(--font-display);
     font-size: 2.2rem;
-    color: #ffffff;
-    text-shadow: 0 0 25px rgba(255, 77, 109, 0.6);
+    background: linear-gradient(135deg, var(--pink-500), var(--pink-400));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 .proposal-success .success-subtitle {
-    color: var(--pink-200);
+    color: var(--text-soft);
     font-size: 1.15rem;
     font-weight: 600;
 }
@@ -1170,14 +1176,16 @@ section {
 .love-modal-backdrop {
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at 50% 50%, #1a041f 0%, #0c020f 60%, #050007 100%);
+    background: radial-gradient(circle at 50% 50%, rgba(255, 240, 243, 0.94) 0%, rgba(255, 204, 213, 0.9) 60%, rgba(255, 179, 193, 0.88) 100%);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
 }
 .love-modal-ambient-glow {
     position: absolute;
     width: 600px;
     height: 600px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(255, 42, 133, 0.22) 0%, rgba(255, 105, 180, 0.08) 50%, transparent 75%);
+    background: radial-gradient(circle, rgba(255, 77, 109, 0.28) 0%, rgba(255, 179, 193, 0.15) 50%, transparent 75%);
     filter: blur(50px);
     pointer-events: none;
     animation: ambientPulse 4s ease-in-out infinite alternate;
@@ -1190,13 +1198,20 @@ section {
 .love-modal-content {
     position: relative;
     z-index: 5;
+    width: 92%;
     max-width: 620px;
-    padding: 2.5rem 2rem;
+    padding: 3rem 2.2rem;
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 1.6rem;
+    background: var(--glass);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 2px solid var(--glass-border);
+    border-radius: 36px;
+    box-shadow: 0 20px 60px rgba(201, 24, 74, 0.22), 0 0 45px rgba(255, 179, 193, 0.35);
     transform: scale(0.85);
     opacity: 0;
     transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.5s ease;
@@ -1208,70 +1223,58 @@ section {
 
 .love-modal-title {
     font-family: var(--font-display);
-    font-size: clamp(2.6rem, 7.5vw, 4.4rem);
+    font-size: clamp(1.4rem, 5.2vw, 2.75rem);
     font-weight: 700;
-    color: #ff7da7;
-    line-height: 1.15;
-    letter-spacing: -0.5px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.6rem;
-    text-shadow: 0 0 35px rgba(255, 125, 167, 0.55), 0 0 70px rgba(255, 42, 133, 0.3);
+    line-height: 1.2;
+    white-space: nowrap;
+    text-align: center;
+    width: 100%;
     margin: 0;
+    overflow: visible;
 }
-.love-title-text {
-    background: linear-gradient(135deg, #ffa8c8 0%, #ff7da7 60%, #ff528b 100%);
+.love-title-nowrap {
+    white-space: nowrap;
+    display: inline-block;
+    background: linear-gradient(135deg, var(--pink-600), var(--pink-500), var(--pink-400));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-}
-.love-heart-emoji {
-    display: inline-block;
-    color: #ff7da7;
-    font-size: 0.95em;
-    filter: drop-shadow(0 0 20px rgba(255, 125, 167, 0.8));
-    animation: heartBeat 1.4s ease-in-out infinite;
+    filter: drop-shadow(0 2px 10px rgba(201, 24, 74, 0.25));
 }
 
 .love-modal-subtitle {
     font-family: var(--font-body);
-    font-size: clamp(1.1rem, 2.7vw, 1.35rem);
-    font-weight: 400;
-    color: rgba(255, 255, 255, 0.92);
-    line-height: 1.65;
-    max-width: 500px;
+    font-size: clamp(1.05rem, 2.5vw, 1.25rem);
+    font-weight: 500;
+    color: var(--text);
+    line-height: 1.7;
+    max-width: 520px;
     margin: 0;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
 }
 
 .btn-love-close {
-    margin-top: 1.2rem;
-    padding: 0.85rem 3rem;
-    background: rgba(255, 255, 255, 0.08);
+    margin-top: 1rem;
+    padding: 0.85rem 3.2rem;
+    background: linear-gradient(135deg, var(--pink-500), var(--pink-400));
     color: #ffffff;
     font-family: var(--font-body);
     font-size: 1.05rem;
-    font-weight: 600;
-    border: 1px solid rgba(255, 255, 255, 0.18);
+    font-weight: 700;
+    border: none;
     border-radius: 9999px;
     cursor: pointer;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 6px 20px rgba(201, 24, 74, 0.35);
     transition: all 0.25s ease;
 }
 .btn-love-close:hover {
-    background: rgba(255, 255, 255, 0.18);
-    border-color: rgba(255, 125, 167, 0.6);
-    box-shadow: 0 0 25px rgba(255, 125, 167, 0.4);
+    box-shadow: 0 10px 30px rgba(201, 24, 74, 0.5);
     transform: translateY(-2px) scale(1.04);
 }
 .btn-love-close:active {
     transform: translateY(0) scale(0.98);
 }
 
-/* Glowing Orb in Bottom Right (matching screenshot) */
+/* Glowing Orb in Bottom Right */
 .love-modal-orb-wrapper {
     position: absolute;
     bottom: 2.5rem;
@@ -1289,16 +1292,16 @@ section {
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    border: 1.5px solid rgba(255, 42, 133, 0.4);
-    box-shadow: 0 0 25px rgba(255, 42, 133, 0.35);
+    border: 2px solid var(--pink-300);
+    box-shadow: 0 0 25px rgba(255, 77, 109, 0.35);
     animation: orbRipple 2.2s cubic-bezier(0.25, 1, 0.5, 1) infinite;
 }
 .love-modal-orb-dot {
     width: 18px;
     height: 18px;
-    background: #ff1f84;
+    background: var(--pink-500);
     border-radius: 50%;
-    box-shadow: 0 0 16px #ff1f84, 0 0 32px #ff4d9a;
+    box-shadow: 0 0 16px var(--pink-500), 0 0 30px var(--pink-300);
 }
 @keyframes orbRipple {
     0% { transform: scale(0.7); opacity: 0.9; }

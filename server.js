@@ -9,7 +9,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Fallback to index.html for any other requests (useful if adding routing later)
 app.use((req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+    res.sendFile('index.html', { root: path.join(__dirname, 'public') });
 });
 
 // Only start listening when run directly (not when imported by tests)

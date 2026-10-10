@@ -887,7 +887,7 @@ section {
    FOREVER SECTION
    ============================================ */
 .forever-section {
-    min-height: 80vh;
+    min-height: 85vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -895,45 +895,125 @@ section {
     text-align: center;
     position: relative;
     overflow: hidden;
+    padding: 4rem 1.5rem;
 }
-.forever-content {
+.forever-proposal-card {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 440px;
+    margin: 0 auto;
+    padding: 3.5rem 2rem 3rem;
+    background: radial-gradient(circle at 50% 20%, #460938 0%, #240428 55%, #120115 100%);
+    border: 1px solid rgba(255, 77, 109, 0.35);
+    border-radius: 36px;
+    box-shadow: 0 25px 70px rgba(18, 1, 22, 0.75), 0 0 60px rgba(255, 42, 133, 0.25);
+    text-align: center;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+.card-chevron {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.5rem;
+    font-size: 1.4rem;
+    line-height: 1;
+    color: rgba(255, 255, 255, 0.65);
+    cursor: default;
+    user-select: none;
+}
+.proposal-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5.5vw, 2.75rem);
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.25;
+    letter-spacing: -0.5px;
+    text-shadow: 0 2px 20px rgba(255, 77, 109, 0.45);
+    margin: 0;
+}
+.proposal-subtitle {
+    font-family: var(--font-body);
+    font-size: clamp(1rem, 2.8vw, 1.15rem);
+    color: rgba(255, 255, 255, 0.75);
+    line-height: 1.6;
+    max-width: 340px;
+    margin: 0;
+}
+.proposal-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    margin-top: 1rem;
+    position: relative;
+    min-height: 140px;
+    justify-content: center;
+}
+.btn-yes {
+    width: 100%;
+    max-width: 320px;
+    padding: 1.1rem 2rem;
+    background: linear-gradient(135deg, #ff177d 0%, #ff0066 50%, #e6005c 100%);
+    color: #ffffff;
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 9999px;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(255, 0, 102, 0.5), 0 0 25px rgba(255, 0, 102, 0.3);
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+    position: relative;
+    z-index: 2;
+}
+.btn-yes:hover {
+    transform: scale(1.05);
+    box-shadow: 0 14px 40px rgba(255, 0, 102, 0.7), 0 0 35px rgba(255, 0, 102, 0.45);
+}
+.btn-no {
+    width: 100%;
+    max-width: 240px;
+    padding: 0.9rem 1.8rem;
+    background: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.55);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 600;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s ease;
     position: relative;
     z-index: 1;
+    user-select: none;
 }
-.forever-heart {
-    font-size: 4rem;
-    margin-bottom: 1.5rem;
-    animation: heartBeat 1.5s ease-in-out infinite;
+.proposal-success {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 0;
+    animation: popIn 0.6s var(--ease-spring) forwards;
 }
-.forever-title {
+.proposal-success .success-heart {
+    font-size: 3.5rem;
+    animation: heartBeat 1.4s ease-in-out infinite;
+}
+.proposal-success .success-title {
     font-family: var(--font-display);
-    font-size: clamp(2.5rem, 6vw, 4.5rem);
-    background: linear-gradient(135deg, var(--pink-500), var(--pink-400), var(--pink-300));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: 1.5rem;
+    font-size: 2.2rem;
+    color: #ffffff;
+    text-shadow: 0 0 25px rgba(255, 77, 109, 0.6);
 }
-.forever-text {
+.proposal-success .success-subtitle {
+    color: var(--pink-200);
     font-size: 1.15rem;
-    color: var(--text-soft);
-    max-width: 520px;
-    line-height: 1.8;
-    margin: 0 auto 2rem;
-}
-.forever-date {
-    display: inline-block;
-    padding: 0.8rem 2rem;
-    background: var(--glass);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    border: 1px solid var(--glass-border);
-    border-radius: 60px;
-    font-family: var(--font-display);
-    font-size: 1.3rem;
-    color: var(--pink-500);
-    font-weight: 700;
-    box-shadow: var(--glass-shadow);
+    font-weight: 600;
 }
 .confetti-container {
     position: absolute;

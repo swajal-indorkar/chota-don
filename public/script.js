@@ -56,6 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 populateReasons();
                 setupScrollAnimations();
                 initFloatingNav();
+                initProposalCard();
                 
                 if (floatingNav) {
                     floatingNav.classList.remove('hidden');
@@ -331,6 +332,56 @@ function setupScrollAnimations() {
         }, { threshold: 0.5 });
         confettiObserver.observe(foreverSection);
     }
+}
+
+function initProposalCard() {
+    const noBtn = document.getElementById('noProposalBtn');
+    const yesBtn = document.getElementById('yesProposalBtn');
+    const actions = document.getElementById('proposal-actions');
+    const success = document.getElementById('proposalSuccess');
+    const card = document.getElementById('proposal-card');
+    if (!noBtn || !yesBtn) return;
+
+    let dodgeCount = 0;
+    const dodgePhrases = [
+        "Are you sure? 🥺",
+        "Think again! 😉",
+        "Wrong button! 😜",
+        "You can't say no! 💖",
+        "Only YES allowed! 🥰",
+        "Try again! 🌸"
+    ];
+
+    const dodge = (e) => {
+        if (e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+        dodgeCount++;
+        noBtn.textContent = dodgePhrases[dodgeCount % dodgePhrases.length];
+
+        const cardWidth = card ? card.clientWidth : 320;
+        const maxOffset = Math.min(100, cardWidth * 0.25);
+        const randomX = (Math.random() > 0.5 ? 1 : -1) * (35 + Math.random() * maxOffset);
+        const randomY = (Math.random() - 0.5) * 50;
+
+        noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
+        const newScale = Math.min(1.25, 1 + dodgeCount * 0.05);
+        yesBtn.style.transform = `scale(${newScale})`;
+    };
+
+    noBtn.addEventListener('mouseenter', dodge);
+    noBtn.addEventListener('click', dodge);
+    noBtn.addEventListener('touchstart', dodge, { passive: false });
+
+    yesBtn.addEventListener('click', () => {
+        triggerConfetti();
+        if (typeof createFallingHearts === 'function') {
+            createFallingHearts();
+        }
+        if (actions) actions.classList.add('hidden');
+        if (success) success.classList.remove('hidden');
+    });
 }
 
 // YouTube iframe API logic

@@ -292,17 +292,18 @@ function triggerConfetti() {
     if (!container || container.dataset.fired) return;
     container.dataset.fired = 'true';
     const colors = ['#ff4d6d', '#ff8fa3', '#ffb3c1', '#ffccd5', '#c9184a', '#ffd700', '#ff69b4'];
-    for (let i = 0; i < 60; i++) {
+    for (let i = 0; i < 35; i++) {
         const piece = document.createElement('div');
         piece.className = 'confetti-piece';
         piece.style.left = Math.random() * 100 + '%';
         piece.style.background = colors[Math.floor(Math.random() * colors.length)];
-        piece.style.animationDuration = (2 + Math.random() * 3) + 's';
-        piece.style.animationDelay = Math.random() * 1.5 + 's';
-        piece.style.width = (6 + Math.random() * 8) + 'px';
-        piece.style.height = (6 + Math.random() * 8) + 'px';
+        piece.style.animationDuration = (2 + Math.random() * 2.5) + 's';
+        piece.style.animationDelay = Math.random() * 0.8 + 's';
+        piece.style.width = (6 + Math.random() * 6) + 'px';
+        piece.style.height = (6 + Math.random() * 6) + 'px';
         piece.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
         container.appendChild(piece);
+        setTimeout(() => piece.remove(), 5500);
     }
 }
 
@@ -368,35 +369,21 @@ function launchModalFloatingHearts(container) {
             clearInterval(interval);
             return;
         }
+        if (container.children.length >= 8) return;
         const item = document.createElement('div');
         item.className = 'modal-heart-item';
         item.textContent = items[Math.floor(Math.random() * items.length)];
-        item.style.left = Math.random() * 95 + '%';
-        item.style.fontSize = (1 + Math.random() * 1.8) + 'rem';
-        item.style.animationDuration = (3.5 + Math.random() * 4) + 's';
-        item.style.animationDelay = (Math.random() * 0.5) + 's';
+        item.style.left = (5 + Math.random() * 85) + '%';
+        item.style.fontSize = (1.1 + Math.random() * 1.3) + 'rem';
+        item.style.animationDuration = (3.5 + Math.random() * 2.5) + 's';
         container.appendChild(item);
-        setTimeout(() => item.remove(), 8000);
-    }, 180);
+        setTimeout(() => item.remove(), 6000);
+    }, 600);
     return interval;
 }
 
 function triggerMegaConfetti() {
     triggerConfetti();
-    setTimeout(() => {
-        const container = document.getElementById('confetti-container');
-        if (container) {
-            container.dataset.fired = '';
-            triggerConfetti();
-        }
-    }, 350);
-    setTimeout(() => {
-        const container = document.getElementById('confetti-container');
-        if (container) {
-            container.dataset.fired = '';
-            triggerConfetti();
-        }
-    }, 800);
 }
 
 function initProposalCard() {
@@ -467,6 +454,8 @@ function initProposalCard() {
         if (success) success.classList.remove('hidden');
 
         if (loveModal) {
+            document.documentElement.classList.add('modal-open');
+            document.body.classList.add('modal-open');
             loveModal.classList.remove('hidden');
             requestAnimationFrame(() => {
                 loveModal.classList.add('active');
@@ -482,11 +471,19 @@ function initProposalCard() {
     if (loveModalCloseBtn && loveModal) {
         loveModalCloseBtn.addEventListener('click', () => {
             loveModal.classList.remove('active');
+            document.documentElement.classList.remove('modal-open');
+            document.body.classList.remove('modal-open');
             if (heartsInterval) clearInterval(heartsInterval);
             setTimeout(() => {
                 loveModal.classList.add('hidden');
-            }, 500);
+            }, 400);
         });
+    }
+
+    if (loveModal) {
+        loveModal.addEventListener('touchmove', (e) => {
+            e.preventDefault();
+        }, { passive: false });
     }
 }
 

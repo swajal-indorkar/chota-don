@@ -429,6 +429,136 @@ section {
     to   { opacity: 1; transform: translateY(0); }
 }
 
+/* ============================================
+   ROMANTIC POLAROID MEMORY CARD
+   ============================================ */
+.hero-polaroid-wrapper {
+    margin: 1.5rem auto 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1000px;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.6s var(--ease-out-expo) forwards;
+}
+
+.hero-polaroid {
+    position: relative;
+    background: #ffffff;
+    padding: 12px 12px 18px 12px;
+    border-radius: 20px;
+    box-shadow: 0 16px 45px rgba(201, 24, 74, 0.22), 0 0 35px rgba(255, 179, 193, 0.4);
+    transform: rotate(-2.5deg);
+    transition: transform 0.4s var(--ease-spring), box-shadow 0.4s ease;
+    width: min(290px, 82vw);
+    cursor: pointer;
+    user-select: none;
+}
+
+.hero-polaroid:hover {
+    transform: rotate(0deg) translateY(-8px) scale(1.03);
+    box-shadow: 0 24px 60px rgba(201, 24, 74, 0.35), 0 0 50px rgba(255, 179, 193, 0.6);
+}
+
+.polaroid-tape {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%) rotate(1deg);
+    width: 76px;
+    height: 24px;
+    background: rgba(255, 182, 193, 0.75);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px dashed rgba(255, 105, 180, 0.4);
+    border-radius: 4px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    z-index: 2;
+}
+
+.polaroid-img-wrapper {
+    position: relative;
+    width: 100%;
+    height: 310px;
+    border-radius: 14px;
+    overflow: hidden;
+    background: var(--pink-100);
+}
+
+.polaroid-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+    display: block;
+    transition: transform 0.6s ease;
+}
+
+.hero-polaroid:hover .polaroid-img {
+    transform: scale(1.05);
+}
+
+.polaroid-caption {
+    font-family: 'Caveat', cursive;
+    font-size: 1.65rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-top: 10px;
+    margin-bottom: 0;
+    text-align: center;
+    letter-spacing: 0.5px;
+    line-height: 1.2;
+}
+
+.polaroid-pin {
+    position: absolute;
+    bottom: 12px;
+    right: 14px;
+    font-size: 1.25rem;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15));
+    animation: gentlePulse 2.5s ease-in-out infinite;
+}
+
+@keyframes gentlePulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.15) rotate(5deg); }
+}
+
+/* Modal Photo Avatar */
+.modal-photo-wrapper {
+    position: relative;
+    width: 110px;
+    height: 110px;
+    margin: 0 auto 0.5rem;
+}
+
+.modal-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 25%;
+    border-radius: 50%;
+    border: 3.5px solid #ffffff;
+    box-shadow: 0 8px 30px rgba(201, 24, 74, 0.3), 0 0 25px rgba(255, 179, 193, 0.5);
+    display: block;
+}
+
+.modal-photo-heart-badge {
+    position: absolute;
+    bottom: -4px;
+    right: -4px;
+    font-size: 1.4rem;
+    background: #ffffff;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+    animation: heartBeat 1.4s ease-in-out infinite;
+}
+
 .scroll-cta {
     position: absolute;
     bottom: 2.5rem;

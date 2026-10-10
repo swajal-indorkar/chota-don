@@ -982,7 +982,7 @@ section {
    FOREVER SECTION
    ============================================ */
 .forever-section {
-    min-height: 85vh;
+    min-height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -990,7 +990,8 @@ section {
     text-align: center;
     position: relative;
     overflow: hidden;
-    padding: 4rem 1.5rem;
+    padding: 4.5rem 1.5rem 6.5rem;
+    contain: paint;
 }
 .forever-proposal-card {
     position: relative;
@@ -1011,6 +1012,11 @@ section {
     flex-direction: column;
     align-items: center;
     gap: 1.5rem;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    will-change: transform, opacity;
 }
 .card-chevron {
     position: absolute;
@@ -1048,6 +1054,8 @@ section {
     position: relative;
     min-height: 140px;
     justify-content: center;
+    overflow: hidden;
+    touch-action: pan-y;
 }
 .btn-yes {
     width: 100%;
@@ -1065,6 +1073,7 @@ section {
     transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
     position: relative;
     z-index: 2;
+    touch-action: manipulation;
 }
 .btn-yes:hover {
     transform: scale(1.05);
@@ -1086,6 +1095,8 @@ section {
     position: relative;
     z-index: 1;
     user-select: none;
+    touch-action: manipulation;
+    will-change: transform;
 }
 .proposal-success {
     display: flex;
@@ -1117,6 +1128,7 @@ section {
     inset: 0;
     pointer-events: none;
     overflow: hidden;
+    contain: strict;
 }
 .confetti-piece {
     position: absolute;

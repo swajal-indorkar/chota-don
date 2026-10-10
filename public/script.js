@@ -313,11 +313,12 @@ function setupScrollAnimations() {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
             }
         });
     }, {
-        threshold: 0.1,
-        rootMargin: "0px 0px -50px 0px"
+        threshold: 0.05,
+        rootMargin: "0px 0px -20px 0px"
     });
 
     fadeElements.forEach(el => observer.observe(el));
@@ -327,9 +328,12 @@ function setupScrollAnimations() {
     if (foreverSection) {
         const confettiObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) triggerConfetti();
+                if (entry.isIntersecting) {
+                    triggerConfetti();
+                    confettiObserver.unobserve(foreverSection);
+                }
             });
-        }, { threshold: 0.5 });
+        }, { threshold: 0.3 });
         confettiObserver.observe(foreverSection);
     }
 }
@@ -417,26 +421,27 @@ function initProposalCard() {
     ];
 
     const dodge = (e) => {
-        if (e) {
-            e.preventDefault();
+        if (e && e.cancelable) {
             e.stopPropagation();
         }
         dodgeCount++;
         noBtn.textContent = dodgePhrases[dodgeCount % dodgePhrases.length];
 
-        const cardWidth = card ? card.clientWidth : 320;
-        const maxOffset = Math.min(100, cardWidth * 0.25);
-        const randomX = (Math.random() > 0.5 ? 1 : -1) * (35 + Math.random() * maxOffset);
-        const randomY = (Math.random() - 0.5) * 50;
+        const cardWidth = card ? card.clientWidth : 300;
+        const maxOffset = Math.min(65, cardWidth * 0.18);
+        const randomX = (Math.random() > 0.5 ? 1 : -1) * (20 + Math.random() * maxOffset);
+        const randomY = (Math.random() - 0.5) * 24;
 
         noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
-        const newScale = Math.min(1.25, 1 + dodgeCount * 0.05);
+        const newScale = Math.min(1.18, 1 + dodgeCount * 0.04);
         yesBtn.style.transform = `scale(${newScale})`;
     };
 
     noBtn.addEventListener('mouseenter', dodge);
-    noBtn.addEventListener('click', dodge);
-    noBtn.addEventListener('touchstart', dodge, { passive: false });
+    noBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        dodge(e);
+    });
 
     let heartsInterval = null;
 

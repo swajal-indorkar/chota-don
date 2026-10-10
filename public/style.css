@@ -931,10 +931,6 @@ section {
     font-family: var(--font-display);
     font-size: clamp(1.8rem, 5vw, 2.6rem);
     font-weight: 700;
-    background: linear-gradient(135deg, var(--pink-500), var(--pink-400));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
     line-height: 1.25;
     letter-spacing: -0.5px;
     margin: 0;
@@ -1234,12 +1230,27 @@ section {
 }
 .love-title-nowrap {
     white-space: nowrap;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+}
+.gradient-text {
     background: linear-gradient(135deg, var(--pink-600), var(--pink-500), var(--pink-400));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    filter: drop-shadow(0 2px 10px rgba(201, 24, 74, 0.25));
+    display: inline-block;
+    filter: drop-shadow(0 2px 10px rgba(201, 24, 74, 0.22));
+}
+.natural-emoji {
+    display: inline-block;
+    -webkit-text-fill-color: initial !important;
+    color: initial !important;
+    background: none !important;
+    font-style: normal;
+    vertical-align: middle;
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.12));
 }
 
 .love-modal-subtitle {

@@ -334,12 +334,76 @@ function setupScrollAnimations() {
     }
 }
 
+function playCelebrationChime() {
+    try {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtx) return;
+        const ctx = new AudioCtx();
+        const notes = [523.25, 659.25, 783.99, 987.77, 1046.50];
+        notes.forEach((freq, idx) => {
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(freq, ctx.currentTime + idx * 0.1);
+            gain.gain.setValueAtTime(0, ctx.currentTime + idx * 0.1);
+            gain.gain.linearRampToValueAtTime(0.18, ctx.currentTime + idx * 0.1 + 0.04);
+            gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + idx * 0.1 + 1.2);
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.start(ctx.currentTime + idx * 0.1);
+            osc.stop(ctx.currentTime + idx * 0.1 + 1.2);
+        });
+    } catch(e) {}
+}
+
+function launchModalFloatingHearts(container) {
+    if (!container) return;
+    const items = ['🩷', '💖', '✨', '🌸', '💕', '💫', '🌷', '💓'];
+    const interval = setInterval(() => {
+        if (!container.isConnected) {
+            clearInterval(interval);
+            return;
+        }
+        const item = document.createElement('div');
+        item.className = 'modal-heart-item';
+        item.textContent = items[Math.floor(Math.random() * items.length)];
+        item.style.left = Math.random() * 95 + '%';
+        item.style.fontSize = (1 + Math.random() * 1.8) + 'rem';
+        item.style.animationDuration = (3.5 + Math.random() * 4) + 's';
+        item.style.animationDelay = (Math.random() * 0.5) + 's';
+        container.appendChild(item);
+        setTimeout(() => item.remove(), 8000);
+    }, 180);
+    return interval;
+}
+
+function triggerMegaConfetti() {
+    triggerConfetti();
+    setTimeout(() => {
+        const container = document.getElementById('confetti-container');
+        if (container) {
+            container.dataset.fired = '';
+            triggerConfetti();
+        }
+    }, 350);
+    setTimeout(() => {
+        const container = document.getElementById('confetti-container');
+        if (container) {
+            container.dataset.fired = '';
+            triggerConfetti();
+        }
+    }, 800);
+}
+
 function initProposalCard() {
     const noBtn = document.getElementById('noProposalBtn');
     const yesBtn = document.getElementById('yesProposalBtn');
     const actions = document.getElementById('proposal-actions');
     const success = document.getElementById('proposalSuccess');
     const card = document.getElementById('proposal-card');
+    const loveModal = document.getElementById('love-modal');
+    const loveModalCloseBtn = document.getElementById('loveModalCloseBtn');
+    const modalHeartsContainer = document.getElementById('modal-floating-hearts');
     if (!noBtn || !yesBtn) return;
 
     let dodgeCount = 0;
@@ -374,14 +438,51 @@ function initProposalCard() {
     noBtn.addEventListener('click', dodge);
     noBtn.addEventListener('touchstart', dodge, { passive: false });
 
+    let heartsInterval = null;
+
     yesBtn.addEventListener('click', () => {
-        triggerConfetti();
+        playCelebrationChime();
+        triggerMegaConfetti();
         if (typeof createFallingHearts === 'function') {
             createFallingHearts();
         }
+
+        if (player && playerReady && typeof player.playVideo === 'function') {
+            try {
+                player.playVideo();
+                const playBtn = document.getElementById('playMusicBtn');
+                const label = playBtn?.querySelector('.music-label');
+                if (label) label.textContent = 'Playing...';
+                playBtn?.classList.add('playing');
+                isPlaying = true;
+            } catch(e) {}
+        }
+
         if (actions) actions.classList.add('hidden');
         if (success) success.classList.remove('hidden');
+
+        if (loveModal) {
+            loveModal.classList.remove('hidden');
+            requestAnimationFrame(() => {
+                loveModal.classList.add('active');
+            });
+
+            if (modalHeartsContainer) {
+                modalHeartsContainer.innerHTML = '';
+                heartsInterval = launchModalFloatingHearts(modalHeartsContainer);
+            }
+        }
     });
+
+    if (loveModalCloseBtn && loveModal) {
+        loveModalCloseBtn.addEventListener('click', () => {
+            loveModal.classList.remove('active');
+            if (heartsInterval) clearInterval(heartsInterval);
+            setTimeout(() => {
+                loveModal.classList.add('hidden');
+            }, 500);
+        });
+    }
 }
 
 // YouTube iframe API logic
